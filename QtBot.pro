@@ -26,10 +26,14 @@ CONFIG += c++11
 
 SOURCES += \
         main.cpp \
-        mainwindow.cpp
+        mainwindow.cpp \
+    glwidget.cpp \
+    logo.cpp
 
 HEADERS += \
-        mainwindow.h
+        mainwindow.h \
+    glwidget.h \
+    logo.h
 
 FORMS += \
         mainwindow.ui

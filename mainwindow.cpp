@@ -24,6 +24,12 @@ MainWindow::MainWindow(QWidget *parent) :
     laserR = ui->laserR;
     laserB = ui->laserB;
 
+    label = ui->label_13;
+
+    glw = new GLWidget(this);
+
+    setCentralWidget(glw);
+
     connect(serial, &QSerialPort::readyRead, this, &MainWindow::readData);
 
     openSerialPort();
@@ -66,6 +72,21 @@ void MainWindow::parseLine(const QByteArray &data) {
     laserR->setText(list[11]);
     laserFR->setText(list[12]);
 
+    int greenv = list[2].toInt();
+    int redv = list[1].toInt();
+    int bluev = list[3].toInt();
+
+    QPixmap pixmap(64, 16);
+    pixmap.fill(QColor(redv, greenv, bluev));
+    label->setPixmap(pixmap);
+
+    double yawd = list[4].toDouble();
+    double pitchd = list[5].toDouble() + 180;
+    double rolld = list[6].toDouble() + 180;
+
+    glw->setXRotation(static_cast<int>(pitchd * 16));
+    glw->setYRotation(static_cast<int>(rolld * 16));
+    glw->setZRotation(static_cast<int>(yawd * 16));
 }
 
 

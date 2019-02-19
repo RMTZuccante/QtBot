@@ -1,9 +1,12 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include <QLabel>
 #include <QLineEdit>
 #include <QMainWindow>
 #include <QSerialPort>
+
+#include "glwidget.h"
 
 namespace Ui {
 class MainWindow;
@@ -39,6 +42,10 @@ private:
     QLineEdit *laserL;
     QLineEdit *laserR;
     QLineEdit *laserB;
+
+    QLabel *label;
+
+    GLWidget *glw;
 private slots:
     void readData();
 
