@@ -283,23 +283,3 @@ void GLWidget::resizeGL(int w, int h)
     m_proj.setToIdentity();
     m_proj.perspective(45.0f, GLfloat(w) / h, 0.01f, 100.0f);
 }
-
-void GLWidget::mousePressEvent(QMouseEvent *event)
-{
-    m_lastPos = event->pos();
-}
-
-void GLWidget::mouseMoveEvent(QMouseEvent *event)
-{
-    int dx = event->x() - m_lastPos.x();
-    int dy = event->y() - m_lastPos.y();
-
-    if (event->buttons() & Qt::LeftButton) {
-        setXRotation(m_xRot + 8 * dy);
-        setYRotation(m_yRot + 8 * dx);
-    } else if (event->buttons() & Qt::RightButton) {
-        setXRotation(m_xRot + 8 * dy);
-        setZRotation(m_zRot + 8 * dx);
-    }
-    m_lastPos = event->pos();
-}
